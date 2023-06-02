@@ -33,18 +33,14 @@ int button_state(){
 }
 
 // обработка прерывания по совпадению
-ISR(TIMER0_COMPA_vect)
-{
+ISR(TIMER0_COMPA_vect){
   static uint8_t i = 0;
-  if (button_state())
-  {
-    if (i <= 4)
-    {
+  if (button_state()){
+    if (i <= 4){
       PORTD = (1 << i) * 5;
       i++;
     }
-    else if (i > 4 && i <= 9)
-    {
+    else if (i > 4 && i <= 9){
       PORTD = (1 << (9 - i)) * 5;
       i++;
     }
@@ -54,16 +50,12 @@ ISR(TIMER0_COMPA_vect)
 }
 
 
-int main(void)
-{
+int main(void){
   port_set();
   timer_set();
   button_set();
   sei(); 
-
-  while (1)
-  {
- 
+  while (1){
   }
   return 0;
 }
